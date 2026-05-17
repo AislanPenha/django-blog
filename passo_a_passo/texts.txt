@@ -1,0 +1,13 @@
+FAÇA no terminal antes de subir o docker
+mkdir -p /data/web/static /data/web/media
+chown -R duser:duser /data/web
+chmod -R 755 /data/web
+
+
+docker ps -a # lista todos docker
+docker image ls # lista imagem
+docker compose up --build # sempre que inciar o docker
+docker rm -f __nome_do_docker__
+docker system prune -a
+docker compose down -v
+docker compose up --build
