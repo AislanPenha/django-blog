@@ -23,7 +23,7 @@ RUN python -m venv /venv && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static /data/web/media && \
   chown -R duser:duser /venv /data/web /scripts /djangoapp && \
-  chmod -R 755 /data/web && \
+  chmod -R 777 /data/web && \
   chmod -R +x /scripts 
 # Adiciona a pasta scripts e venv/bin 
 # no $PATH do container.
