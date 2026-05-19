@@ -1,8 +1,16 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from site_setup.models import SiteSetup
 # Create your views here.
 
 def index(request):
+    site = SiteSetup.objects.first()
+    print(site)
+    context = {
+        'site': site
+    }
     return render(
         request,
-        'blog/pages/index.html')
+        'blog/pages/index.html',
+        context
+    )
+        
