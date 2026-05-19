@@ -1,4 +1,4 @@
-FROM python:3.14.4-alpine3.22
+FROM python:3.12-alpine
 LABEL maintainer="aislan.penha@gmail.com"
 # Essa variável de ambiente é usada para controlar se o Python deve 
 # gravar arquivos de bytecode (.pyc) no disco. 1 = Não, 0 = Sim
@@ -23,7 +23,7 @@ RUN python -m venv /venv && \
   adduser --disabled-password --no-create-home duser && \
   mkdir -p /data/web/static /data/web/media && \
   chown -R duser:duser /venv /data/web /scripts /djangoapp && \
-  chmod -R 777 /data/web && \
+  chmod -R 755 /data/web && \
   chmod -R +x /scripts 
 # Adiciona a pasta scripts e venv/bin 
 # no $PATH do container.
