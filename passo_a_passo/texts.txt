@@ -5,9 +5,17 @@ chmod -R 755 /data/web
 
 
 docker ps -a # lista todos docker
-docker image ls # lista imagem
+docker images ls # lista imagem
 docker compose up --build # sempre que inciar o docker
 docker rm -f __nome_do_docker__
 docker system prune -a
 docker compose down -v
 docker compose up --build
+
+docker compose up -d
+docker compose down
+
+docker compose run --rm djangoapp ___comando__python -V
+docker compose run --rm djangoapp /bin/sh -c 'echo $PATH $ALLOWED_HOSTS'
+
+docker exec -it djangoapp /bin/sh
