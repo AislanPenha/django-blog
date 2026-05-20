@@ -32,10 +32,13 @@
         </div>
       {% endif %}
 
+
       {% if site_setup.show_menu %}
+      
         <nav class="menu">
           <ul class="menu-items">
-            {% for link in site_setup.menu.all %}
+            {% comment %} {{site_setup.menulink_set.all}} {% endcomment %}
+            {% for link in site_setup.menulink_set.all %}
               <li class="menu-item">
                 {% if link.new_tab %}
                   <a target="_blank" class="menu-link" href="{{ link.url_or_path }}">
