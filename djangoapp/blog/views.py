@@ -1,16 +1,39 @@
 from django.shortcuts import render
-from site_setup.models import SiteSetup
+from django.core.paginator import Paginator
 # Create your views here.
 
+posts = list(range(1000))
+
 def index(request):
-    site = SiteSetup.objects.first()
-    print(site)
+    paginator = Paginator(posts, 9)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'site': site
+        'page_obj': page_obj
     }
     return render(
         request,
         'blog/pages/index.html',
+        context
+    )
+
+def post(request):
+    context = {
+        'site': 'site'
+    }
+    return render(
+        request,
+        'blog/pages/post.html',
+        context
+    )
+
+def page(request):
+    context = {
+        'site': 'site'
+    }
+    return render(
+        request,
+        'blog/pages/page.html',
         context
     )
         

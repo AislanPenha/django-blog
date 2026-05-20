@@ -1,6 +1,6 @@
 {% include "blog/partials/_head.html" %}
 
-{% if site.show_header %}
+{% if site_setup.show_header %}
     {% include "blog/partials/_header.html" %}
 {% endif %}
 
@@ -8,12 +8,12 @@
 
 {% endblock content %}
 
-{% if site.show_pagination %}
+{% if site_setup.show_pagination %}
     {% include "blog/partials/_pagination.html" %}
 {% endif %}
 
-{% if site.show_footer %}
+{% if site_setup.show_footer %}
     {% include "blog/partials/_footer.html" %}
 {% endif %}
 
-{% include "blog/partials/_temp.html" %}
+{% comment %} {% include "blog/partials/_temp.html" %} {% endcomment %}
