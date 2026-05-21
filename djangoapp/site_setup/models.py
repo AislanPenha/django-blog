@@ -16,7 +16,8 @@ class MenuLink(models.Model):
         on_delete=models.CASCADE,
         blank=True,
         null=True,
-        default=None
+        default=None,
+        related_name='menu'
     )
     def __str__(self) -> str:
         return f'{self.text}'
@@ -50,5 +51,6 @@ class SiteSetup(models.Model):
             favicon_change = current_favicon_name != self.favicon.name
         if favicon_change:
             resize_image(self.favicon, 32)
+            
     def __str__(self) -> str:
         return f'{self.title}'

@@ -37,13 +37,14 @@
       
         <nav class="menu">
           <ul class="menu-items">
-            {% comment %} {{site_setup.menulink_set.all}} {% endcomment %}
-            {% for link in site_setup.menulink_set.all %}
+            {% comment %} {{site_setup.menulink_set.all}} => related_name=meu {% endcomment %}
+            {% for link in site_setup.menu.all %}
               <li class="menu-item">
                 {% if link.new_tab %}
                   <a target="_blank" class="menu-link" href="{{ link.url_or_path }}">
                     {{ link.text }}
                   </a>
+
               {% else %}
                   <a class="menu-link" href="{{ link.url_or_path }}">
                     {{ link.text }}
