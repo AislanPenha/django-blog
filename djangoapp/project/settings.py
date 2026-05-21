@@ -23,8 +23,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Meu app
     'blog',
-    'site_setup'
+    'site_setup',
+
+    # Summernote
+    'django_summernote',
 ]
 
 MIDDLEWARE = [
@@ -104,3 +109,34 @@ STATIC_ROOT = DATA_DIR / 'static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = DATA_DIR / 'media'
+
+SUMMERNOTE_CONFIG = {
+    
+    'summernote': {
+
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph', 'hr']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture']],
+            ['view', ['fullscreen', 'codeview', 'undo', 'redo']],
+        ],
+
+        'codemirror': {
+            'mode': 'htmlmixed',
+            'lineNumbers': 'true',
+            'theme': 'dracula',
+            'lineWrapping': 'true',
+        },
+    },
+  
+    'css': (
+        '//cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.min.css',
+    ),
+
+    'attachment_filesize_limit': 30 * 1024 *1024, #30MB
+    'attachment_model': 'blog.PostAttachment',
+}

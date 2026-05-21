@@ -10,7 +10,9 @@ docker compose up --build # sempre que inciar o docker
 docker rm -f __nome_do_docker__
 docker system prune -a
 docker compose down -v
+
 docker compose up --build
+docker compose up --build --remove-orphans --renew-anon-volumes --force-recreate
 
 docker compose up -d
 docker compose down
