@@ -1,19 +1,9 @@
 services:
-  setup:
-    image: alpine
-    container_name: setup
-    command: >
-      sh -c "
-      mkdir -p /data/web/static /data/web/media &&
-      chmod -R 777 /data/web
-      "
-    volumes:
-      - ./data:/data
-
   djangoapp:
     container_name: djangoapp
     build:
       context: .
+    user: "1002:1002"
     ports:
       - 8000:8000
     volumes:
@@ -23,11 +13,7 @@ services:
     env_file:
       - ./dotenv_files/.env
     depends_on:
-      setup:
-        condition: service_completed_successfully
-      psql:
-        condition: service_started
-
+      - psql
   psql:
     container_name: psql
     image: postgres:16-alpine
