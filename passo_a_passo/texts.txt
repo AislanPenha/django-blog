@@ -1,6 +1,6 @@
 FAÇA no terminal antes de subir o docker
 mkdir -p /data/web/static /data/web/media
-chown -R duser:duser /data/web
+chown -R 1000:1000 /data/web
 chmod -R 755 /data/web
 
 
