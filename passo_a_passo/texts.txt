@@ -1,6 +1,6 @@
 FAÇA no terminal antes de subir o docker
 mkdir -p /data/web/static /data/web/media
-chown -R 1000:1000 /data/web
+chown -R 1002:1002 /data/web
 chmod -R 755 /data/web
 
 
@@ -22,18 +22,4 @@ docker compose run --rm djangoapp /bin/sh -c 'echo $PATH $ALLOWED_HOSTS'
 
 docker exec -it djangoapp /bin/sh
 
-OBS: Se não conseguir criar o app, der esse erro:
-CommandError: [Errno 13] Permission denied: '/djangoapp/blog'
 
-docker compose run --rm djangoapp sh -c "whoami && id && pwd && ls -ld /djangoapp"
-duser
-uid=1000(duser) gid=1000(duser) groups=1000(duser)
-/djangoapp
-drwxrwxr-x    3 1002     1002          4096 Jun 16 17:19 /djangoapp
-
-Problema: 
-duser = uid 1000
-/djangoapp = dono 1002:1002
-
-Resolver:
-sudo chown -R 1000:1000 djangoapp
