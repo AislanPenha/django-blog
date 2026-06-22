@@ -1,6 +1,7 @@
 services:
   djangoapp:
     container_name: djangoapp
+    image: meu-blog-django:1.0
     build:
       context: .
     ports:
@@ -13,7 +14,7 @@ services:
       - ./dotenv_files/.env
     depends_on:
       - psql
-    user: "1002:1002"
+    user: "1000:1000" # atenção aqui digite ID no terminal
 
   psql:
     container_name: psql
