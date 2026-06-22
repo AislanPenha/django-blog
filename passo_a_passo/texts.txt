@@ -1,11 +1,22 @@
 FAÇA no terminal antes de subir o docker
 mkdir -p /data/web/static /data/web/media
-chown -R 1002:1002 /data/web
+chown -R 1000:1000 /data/web # verificar o ID
 chmod -R 755 /data/web
 
+# LIMPEZA
+docker stop $(docker ps -q)
+docker rm $(docker ps -aq)
+docker rmi $(docker images -q)
+docker volume rm $(docker volume ls -q)
+docker network prune -f
+docker system prune -a --volumes -f
 
+# VERIFICAR
 docker ps -a # lista todos docker
-docker images ls # lista imagem
+docker images # lista imagem
+docker volume ls # lista volume
+
+
 docker compose up --build # sempre que inciar o docker
 docker rm -f __nome_do_docker__
 docker system prune -a
