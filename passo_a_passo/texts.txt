@@ -1,7 +1,7 @@
 FAÇA no terminal antes de subir o docker
-mkdir -p /data/web/static /data/web/media
-chown -R 1000:1000 /data/web # verificar o ID
-chmod -R 755 /data/web
+sudo mkdir -p /data/web/static /data/web/media
+sudo chown -R 1000:1000 /data/web # verificar o ID
+sudo chmod -R 755 /data/web
 
 # LIMPEZA
 docker stop $(docker ps -q)
