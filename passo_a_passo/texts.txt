@@ -1,7 +1,8 @@
 FAÇA no terminal antes de subir o docker
-sudo mkdir -p data/web/static data/web/media
-sudo chown -R 1000:1000 data/web # verificar o ID
-sudo chmod -R 755 data/web
+CRIAR o arquivo .env na raiz com o UID e GID
+mkdir -p data/web/static data/web/media
+sudo chown -R 1000:1000 data/web # verificar o ID e nem precisa
+sudo chmod -R 755 data/web # nem precisa porque já vem com essa permissão
 
 # LIMPEZA
 docker stop $(docker ps -q)
@@ -12,6 +13,7 @@ docker network prune -f
 docker system prune -a --volumes -f
 
 # VERIFICAR
+docker ps -q # verifica se tem algum docker rodando
 docker ps -a # lista todos docker
 docker images # lista imagem
 docker volume ls # lista volume
