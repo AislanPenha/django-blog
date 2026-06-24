@@ -22,8 +22,12 @@ def index(request):
     )
 
 def post(request, slug):
+    post = Post.objects.get_published() \
+        .filter(slug=slug) \
+        .first()
+    
     context = {
-        'site': 'site'
+        'post': post
     }
     return render(
         request,
