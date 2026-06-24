@@ -40,12 +40,31 @@ def created_by(request, author_id):
         context
     )
 
-def category_by(request, category_slug):
+def category(request, category_slug):
     # posts = Post.objects \
     #     .filter(is_published=True) \
     #     .order_by('-pk')
     posts = Post.objects.get_published() \
         .filter(category__slug=category_slug)
+
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'page_obj': page_obj
+    }
+    return render(
+        request,
+        'blog/pages/index.html',
+        context
+    )
+
+def tag(request, tag_slug):
+    # posts = Post.objects \
+    #     .filter(is_published=True) \
+    #     .order_by('-pk')
+    posts = Post.objects.get_published() \
+        .filter(tags__slug=tag_slug)
 
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get('page')
