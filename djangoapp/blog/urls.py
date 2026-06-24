@@ -9,4 +9,5 @@ urlpatterns = [
     path('created_by/<int:author_id>/', views.created_by, name='created_by'),
     path('category/<slug:category_slug>/', views.category, name='category'),
     path('tag/<slug:tag_slug>/', views.tag, name='tag'),
+    path('page', views.search, name='search'),
 ]
