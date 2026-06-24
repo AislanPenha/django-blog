@@ -1,7 +1,9 @@
 from django.shortcuts import render
 from django.core.paginator import Paginator
-from blog.models import Post
+from blog.models import Post, Page
 from django.db.models import Q
+from django.contrib.auth.models import User
+from django.http import Http404
 
 PER_PAGE = 9
 
@@ -14,7 +16,8 @@ def index(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'page_title': 'Home - ',
     }
     return render(
         request,
@@ -26,14 +29,25 @@ def created_by(request, author_id):
     # posts = Post.objects \
     #     .filter(is_published=True) \
     #     .order_by('-pk')
+    user = User.objects.filter(pk=author_id).first()
+
+    if user is None:
+        raise Http404()
+    
     posts = Post.objects.get_published() \
         .filter(created_by__pk=author_id)
+    
+    user_fullname = user.username
+
+    if user.first_name:
+        user_fullname = f'{user.first_name} {user.last_name}'
     
     paginator = Paginator(posts, PER_PAGE)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     context = {
-        'page_obj': page_obj
+        'page_obj': page_obj,
+        'page_title': f'{user_fullname} - ',
     }
     return render(
         request,
@@ -93,9 +107,13 @@ def post(request, slug):
         context
     )
 
-def page(request):
+def page(request, slug):
+    page = Page.objects \
+        .filter(is_published=True) \
+        .filter(slug=slug).first()
+
     context = {
-        'site': 'site'
+        'page': page
     }
     return render(
         request,
