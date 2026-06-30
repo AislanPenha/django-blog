@@ -17,6 +17,10 @@ docker ps -q # verifica se tem algum docker rodando
 docker ps -a # lista todos docker
 docker images # lista imagem
 docker volume ls # lista volume
+docker network ls
+
+# Detalha a rede
+docker network inspect __nome_da_rede__
 
 
 docker compose up --build # sempre que inciar o docker
